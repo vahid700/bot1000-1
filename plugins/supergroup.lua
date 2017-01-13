@@ -2242,6 +2242,7 @@ local function run(msg, matches)
 				if not is_muted(chat_id, msg_type..': yes') then
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup to: mute "..msg_type)
 					mute(chat_id, msg_type)
+					return msg_type.." ارسال ویدیو در قلمرو قفل شد 🔒 "
 				else
 					return "SuperGroup mute "..msg_type.." قبلا قفل بود🏹"
 				end
