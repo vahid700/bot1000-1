@@ -41,7 +41,7 @@
       end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
-	  local text = '👽ربات در گروه فعال شد!'
+	  local text = '😐 مواظب گروهم بابایی 😎 😐'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -259,11 +259,11 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return '✅ ارسال لینک در حال حاضر قفل است'
+    return '✅ 😡 کسی نمیتونه لینک ارسال کنه بابایی عرفان'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ ارسال لینک قفل شد'
+    return '✅ 😡 کسی نمیتونه لینک ارسال کنه بابایی عرفان'
   end
 end
 
@@ -1513,7 +1513,7 @@ local function run(msg, matches)
 				return
 			end
 			if is_super_group(msg) then
-				return reply_msg(msg.id, '👽ربات در گروه فعال است', ok_cb, false)
+				return reply_msg(msg.id, '😘مشغولم بابا عرفان😘', ok_cb, false)
 			end
 			print("SuperGroup "..msg.to.print_name.."("..msg.to.id..") added")
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] added SuperGroup")
@@ -2418,7 +2418,6 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'help' and not is_owner(msg) then
-			text = "🔺اگر مشکلی دارید به کانال @Permag_bots مراجعه کنید"
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'help' and is_owner(msg) then
 			local name_log = user_print_name(msg.from)
