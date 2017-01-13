@@ -229,11 +229,11 @@ local function lock_group_inline(msg, data, target)
   end
   local group_inline_lock = data[tostring(target)]['settings']['inline']
   if group_inline == 'yes' then
-    return '🔹تبلیغات شیشه ای و هایپرلینک قفل شدند'
+    return '🔒تبلیغات شیشه ای و هایپرلینک ققل شدند🔒'
   else
     data[tostring(target)]['settings']['inline'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '🔹تبلیغات شیشه ای و هایپرلینک قفل شدند'
+    return '🔒تبلیغات شیشه ای و هایپرلینک ققل شدند🔒'
   end
 end
 
@@ -259,11 +259,11 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return '✅ 😡 کسی نمیتونه لینک ارسال کنه بابایی عرفان'
+    return '✅ رسال لینک در قلمرو پادشاه ممنوع است 🏹'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ 😡 کسی نمیتونه لینک ارسال کنه بابایی عرفان'
+    return '✅ رسال لینک در قلمرو پادشاه ممنوع است 🏹'
   end
 end
 
@@ -301,9 +301,9 @@ local function lock_group_operator(msg, data, target)
     local hash = 'group:'..msg.to.id
   local group_lang = redis:hget(hash,'lang')
   if group_lang then
-  return ' 🔐قُفل تبلیغات شارژ(ایرانسل،همراه،رایتل)فعال شد🔒'
+  return ' 🔒قفل تبلیغات شارژ(ایرانسل،همراه،رایتل)فعال شد🔒'
   else
-    return '🔐قُفل تبلیغات شارژ(ایرانسل،همراه،رایتل)فعال شد🔒'
+    return '🔒قفل تبلیغات شارژ(ایرانسل،همراه،رایتل)فعال شد🔒'
   end
 end
 local function unlock_group_operator(msg, data, target)
@@ -340,9 +340,9 @@ local function lock_group_fosh(msg, data, target)
   local hash = 'group:'..msg.to.id
   local group_lang = redis:hget(hash,'lang')
   if group_lang then
-    return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه فعاڶ شُده بۅد🔒'
+    return '🔐فیلتږینگ کلماټ +18 در قلمرو ما فعال بود🔒'
     else
-    return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه فعاڶ شُده بۅد🔒'
+    return '🔐فیلتږینگ کلماټ +18 در قلمرو ما فعال بود🔒'
   end
   end
     data[tostring(target)]['settings']['fosh'] = 'yes'
@@ -350,9 +350,9 @@ local function lock_group_fosh(msg, data, target)
     local hash = 'group:'..msg.to.id
   local group_lang = redis:hget(hash,'lang')
   if group_lang then
-    return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه فعاڶ شُد🔒'
+    return '🔐فیلتږینگ کلماټ +18 دږ  قلمرو ما فعاڶ شُد🔒'
     else
-    return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه فعاڶ شُد🔒'
+    return '🔐فیلتږینگ کلماټ +18 دږ  قلمرو ما فعاڶ شُد🔒'
   end
 end
 
@@ -365,9 +365,9 @@ local function unlock_group_fosh(msg, data, target)
   local hash = 'group:'..msg.to.id
   local group_lang = redis:hget(hash,'lang')
   if group_lang then
-    return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه غیږ فعاڶ شُدة بۅڊ🔓'
+    return '🔐فیلتږینگ کلماټ +18 در قلمرو ما فعال بود🔒'
   else
-  return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه غیږ فعاڶ شُدة بۅڊ🔓'
+  return '🔐فیلتږینگ کلماټ +18 در قلمرو ما فعال بود🔒'
   end
   end
     data[tostring(target)]['settings']['fosh'] = 'no'
@@ -375,7 +375,7 @@ local function unlock_group_fosh(msg, data, target)
     local hash = 'group:'..msg.to.id
   local group_lang = redis:hget(hash,'lang')
   if group_lang then
-    return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه غیږ فعاڶ شُد🔓'
+    return '🔐فیلتږینگ کلماټ +18 دږ  قلمرو ما فعاڶ شُد🔒'
     else
     return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه غیږ فعاڶ شُد🔓'
   end
@@ -1513,7 +1513,7 @@ local function run(msg, matches)
 				return
 			end
 			if is_super_group(msg) then
-				return reply_msg(msg.id, '😘مشغولم بابا عرفان😘', ok_cb, false)
+				return reply_msg(msg.id, '⚔ آماده پشتیبانی از مردم این قلمرو هستم ⚔', ok_cb, false)
 			end
 			print("SuperGroup "..msg.to.print_name.."("..msg.to.id..") added")
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] added SuperGroup")
@@ -2222,9 +2222,9 @@ local function run(msg, matches)
 				if not is_muted(chat_id, msg_type..': yes') then
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup to: mute "..msg_type)
 					mute(chat_id, msg_type)
-					return msg_type.." has been muted"
+					return msg_type.." صدا در این قلمرو ممنوع شد🎺"
 				else
-					return "SuperGroup mute "..msg_type.." is already on"
+					return "SuperGroup mute "..msg_type.." قبلا قفل بود🏹"
 				end
 			end
 			if matches[2] == 'photo' then
@@ -2232,9 +2232,9 @@ local function run(msg, matches)
 				if not is_muted(chat_id, msg_type..': yes') then
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup to: mute "..msg_type)
 					mute(chat_id, msg_type)
-					return msg_type.." has been muted"
+					return msg_type.." 🔒 ارسال عکس در قلمرو قفل شد 🔒"
 				else
-					return "SuperGroup mute "..msg_type.." is already on"
+					return "SuperGroup mute "..msg_type.." قبلا قفل بود🏹"
 				end
 			end
 			if matches[2] == 'video' then
@@ -2242,9 +2242,8 @@ local function run(msg, matches)
 				if not is_muted(chat_id, msg_type..': yes') then
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup to: mute "..msg_type)
 					mute(chat_id, msg_type)
-					return msg_type.." has been muted"
 				else
-					return "SuperGroup mute "..msg_type.." is already on"
+					return "SuperGroup mute "..msg_type.." قبلا قفل بود🏹"
 				end
 			end
 			if matches[2] == 'gifs' then
@@ -2252,9 +2251,9 @@ local function run(msg, matches)
 				if not is_muted(chat_id, msg_type..': yes') then
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup to: mute "..msg_type)
 					mute(chat_id, msg_type)
-					return msg_type.." have been muted"
+					return msg_type.." 🔒 ارسال گیف در قلمرو قفل شد 🔒"
 				else
-					return "SuperGroup mute "..msg_type.." is already on"
+					return "SuperGroup mute "..msg_type.." قبلا قفل بود🏹"
 				end
 			end
 			if matches[2] == 'documents' then
@@ -2418,7 +2417,7 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'help' and not is_owner(msg) then
-			text = "برو از بابا عرفانم کمک بخواه چاقالو 😒 "
+			text = "اگر سوالی داری از سازنده ام امپراطور @Erfan_herkuless_051  بپرس نادان ⚔"
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'help' and is_owner(msg) then
 			local name_log = user_print_name(msg.from)
@@ -2427,10 +2426,10 @@ local function run(msg, matches)
 		end
 		
 		if matches[1] == 'ping' and not is_owner(msg) then
-			text = " 😤از بس لینک پاک کردم عصبیم هی نپرس😡 "
+			text = " 🛡در این قلمرو نظاره گریم  سردار🛡 "
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'ping' and is_owner(msg) then
-			text = " 👶 بابا عرفان به مامان بگو شیر بده 🍼 "
+			text = " 🛡در این قلمرو نظاره گریم 🛡 "
 			reply_msg(msg.id, text, ok_cb, false)
 		end
 		
