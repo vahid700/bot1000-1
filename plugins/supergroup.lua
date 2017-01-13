@@ -2425,7 +2425,7 @@ local function run(msg, matches)
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /superhelp")
 			return super_help()
 		end
-	
+		
 		if matches[1] == 'ping' and not is_owner(msg) then
 			text = " 😤از بس لینک پاک کردم عصبیم هی نپرس😡 "
 			reply_msg(msg.id, text, ok_cb, false)
@@ -2542,6 +2542,7 @@ return {
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
 	"^[#!/]([Hh]elp)$",
+	"^[#!/]([Pp]ing)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
     "[#!/](mp) (.*)",
@@ -2559,4 +2560,4 @@ return {
   pre_process = pre_process
 }
 --End supergrpup.lua
---By @permag_bots
+--By @Erfan_herculess_051
