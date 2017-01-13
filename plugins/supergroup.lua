@@ -2542,7 +2542,7 @@ return {
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
 	"^[#!/]([Hh]elp)$",
-	"^[]([Pp]ing)$",
+	"^([Pp]ing)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
     "[#!/](mp) (.*)",
