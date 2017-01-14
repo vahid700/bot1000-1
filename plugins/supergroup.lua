@@ -2435,15 +2435,6 @@ local function run(msg, matches)
 			return "🛡 درود بر  نسل آریایی 🛡"
 		end
 		
-		if matches[1] == 'سلام' and not is_owner(msg) then
-			text = " ❤️ درود بر نسل آریایی ❤️ "
-			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'سلام' and is_owner(msg) then
-			text = " ❤️ درود بر نسل آریایی و  کوروش کبیر ❤️ "
-			reply_msg(msg.id, text, ok_cb, false)
-			return "🔆سرزمینی که آفتابش غروب نمیکند🔆"
-		end
-		
 		if matches[1] == 'peer_id' and is_admin1(msg)then
 			text = msg.to.peer_id
 			reply_msg(msg.id, text, ok_cb, false)
@@ -2553,7 +2544,6 @@ return {
 	"^[#!/]([Cc]lean) (.*)$",
 	"^[#!/]([Hh]elp)$",
 	"^([Pp]ing)$",
-	"^(سلام)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
     "[#!/](mp) (.*)",
