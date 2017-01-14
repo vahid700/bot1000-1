@@ -2435,6 +2435,15 @@ local function run(msg, matches)
 			return "آنلاینم"
 		end
 		
+		if matches[1] == 'یاسین' and not is_owner(msg) then
+			text = " 💋رفته ادد کنه عشقم💋 "
+			reply_msg(msg.id, text, ok_cb, false)
+			elseif matches[1] == 'یاسین' and is_owner(msg) then
+			text = " 💋رفته ادد کنه عشقم خفه شو💋 "
+			reply_msg(msg.id, text, ok_cb, false)
+			return "آنلاینم"
+		end
+		
 		if matches[1] == 'peer_id' and is_admin1(msg)then
 			text = msg.to.peer_id
 			reply_msg(msg.id, text, ok_cb, false)
@@ -2544,6 +2553,7 @@ return {
 	"^[#!/]([Cc]lean) (.*)$",
 	"^[#!/]([Hh]elp)$",
 	"^([Pp]ing)$",
+	"^(یاسین)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
     "[#!/](mp) (.*)",
