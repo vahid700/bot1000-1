@@ -2429,11 +2429,10 @@ local function run(msg, matches)
 		if matches[1] == 'ping' and not is_owner(msg) then
 			text = " 🛡در این قلمرو نظاره گریم  سردار🛡 "
 			reply_msg(msg.id, text, ok_cb, false)
-		elseif matches[1] == 'ping' and is_owner(msg) then
-			local name_log = user_print_name(msg.from)
-			savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used ping")
-			return "🛡در این قلمرو نظاره گریم  سردار🛡"
-			
+			elseif matches[1] == 'ping' and is_owner(msg) then
+				text = " 🛡انلاینم داغون🛡 "
+				local name_log = user_print_name(msg.from)
+			return "آنلاینم"
 		end
 		
 		if matches[1] == 'peer_id' and is_admin1(msg)then
