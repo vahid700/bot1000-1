@@ -1513,7 +1513,7 @@ local function run(msg, matches)
 				return
 			end
 			if is_super_group(msg) then
-				return reply_msg(msg.id, '⚔ آماده پشتیبانی از مردم این قلمرو هستم ⚔', ok_cb, false)
+				return reply_msg(msg.id, '🏹 سربازانم آماده پشتیبانی از این قلمرو هستند 🏹', ok_cb, false)
 			end
 			print("SuperGroup "..msg.to.print_name.."("..msg.to.id..") added")
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] added SuperGroup")
@@ -2427,10 +2427,10 @@ local function run(msg, matches)
 		end
 		
 		if matches[1] == 'ping' and not is_owner(msg) then
-			text = " 🔥 در این قلمرو نظاره گریم  🔥 "
+			text = " 👑 سربازانم در این قلمرو نگهبانی میدهند 👑 "
 			reply_msg(msg.id, text, ok_cb, false)
 			elseif matches[1] == 'ping' and is_owner(msg) then
-			text = " 👑 در این قلمرو نظاره گریم سردار 👑 "
+			text = "⭐️ درود بر گلادیاتور عرفان هرکولس ⭐️"
 			reply_msg(msg.id, text, ok_cb, false)
 			return "🛡 درود بر  نسل آریایی 🛡"
 		end
