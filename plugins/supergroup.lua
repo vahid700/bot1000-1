@@ -2430,8 +2430,10 @@ local function run(msg, matches)
 			text = " 🛡در این قلمرو نظاره گریم  سردار🛡 "
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'ping' and is_owner(msg) then
-			text = " 🛡در این قلمرو نظاره گریم 🛡 "
-			reply_msg(msg.id, text, ok_cb, false)
+			local name_log = user_print_name(msg.from)
+			savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used ping")
+			return "🛡در این قلمرو نظاره گریم  سردار🛡"
+			
 		end
 		
 		if matches[1] == 'peer_id' and is_admin1(msg)then
@@ -2542,6 +2544,7 @@ return {
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
 	"^[#!/]([Hh]elp)$",
+	"^([Pp]ing)$",
 	"^([Pp]ing)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
