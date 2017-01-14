@@ -2430,8 +2430,8 @@ local function run(msg, matches)
 			text = " 🛡در این قلمرو نظاره گریم  سردار🛡 "
 			reply_msg(msg.id, text, ok_cb, false)
 			elseif matches[1] == 'ping' and is_owner(msg) then
-				text = " 🛡انلاینم داغون🛡 "
-				local name_log = user_print_name(msg.from)
+			text = " 🛡انلاینم داغون🛡 "
+			reply_msg(msg.id, text, ok_cb, false)
 			return "آنلاینم"
 		end
 		
@@ -2543,7 +2543,6 @@ return {
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
 	"^[#!/]([Hh]elp)$",
-	"^([Pp]ing)$",
 	"^([Pp]ing)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
