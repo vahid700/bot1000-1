@@ -2427,21 +2427,21 @@ local function run(msg, matches)
 		end
 		
 		if matches[1] == 'ping' and not is_owner(msg) then
-			text = " 🛡در این قلمرو نظاره گریم  سردار🛡 "
+			text = " 🔥 در این قلمرو نظاره گریم  🔥 "
 			reply_msg(msg.id, text, ok_cb, false)
 			elseif matches[1] == 'ping' and is_owner(msg) then
-			text = " 🛡انلاینم داغون🛡 "
+			text = " 👑 در این قلمرو نظاره گریم سردار 👑 "
 			reply_msg(msg.id, text, ok_cb, false)
-			return "آنلاینم"
+			return "🛡 درود بر  نسل آریایی 🛡"
 		end
 		
-		if matches[1] == 'یاسین' and not is_owner(msg) then
-			text = " 💋رفته ادد کنه عشقم💋 "
+		if matches[1] == 'سلام' and not is_owner(msg) then
+			text = " ❤️ درود بر نسل آریایی ❤️ "
 			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'یاسین' and is_owner(msg) then
-			text = " 💋رفته ادد کنه عشقم خفه شو💋 "
+			elseif matches[1] == 'سلام' and is_owner(msg) then
+			text = " ❤️ درود بر نسل آریایی و  کوروش کبیر ❤️ "
 			reply_msg(msg.id, text, ok_cb, false)
-			return "آنلاینم"
+			return "🔆سزمینی که افتابش غروب نمیکند 🔆"
 		end
 		
 		if matches[1] == 'peer_id' and is_admin1(msg)then
@@ -2553,7 +2553,7 @@ return {
 	"^[#!/]([Cc]lean) (.*)$",
 	"^[#!/]([Hh]elp)$",
 	"^([Pp]ing)$",
-	"^(یاسین)$",
+	"^(سلام)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
     "[#!/](mp) (.*)",
