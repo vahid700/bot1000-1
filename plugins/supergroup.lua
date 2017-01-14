@@ -2441,7 +2441,7 @@ local function run(msg, matches)
 			elseif matches[1] == 'سلام' and is_owner(msg) then
 			text = " ❤️ درود بر نسل آریایی و  کوروش کبیر ❤️ "
 			reply_msg(msg.id, text, ok_cb, false)
-			return "🔆سزمینی که افتابش غروب نمیکند 🔆"
+			return "🔆سرزمینی که آفتابش غروب نمیکند🔆"
 		end
 		
 		if matches[1] == 'peer_id' and is_admin1(msg)then
