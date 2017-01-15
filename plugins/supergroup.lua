@@ -2430,7 +2430,7 @@ local function run(msg, matches)
 			text = " 🔥 در این قلمرو نظاره گریم  🔥 "
 			reply_msg(msg.id, text, ok_cb, false)
 			elseif matches[1] == 'ping' and is_owner(msg) then
-			text = "👑 در این قلمرو نظاره گریم سردار عرفان 👑"
+			text = "👑 در این قلمرو نظاره گریم سردار 👑"
 			reply_msg(msg.id, text, ok_cb, false)
 			return ""
 		end
