@@ -259,11 +259,11 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return '✅ ارسال لینک در قلمرو پادشاه ممنوع است 🏹'
+    return '🛡ارسال لینک در قلمرو ما ممنوع است🛡'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ ارسال لینک در قلمرو پادشاه ممنوع است 🏹'
+    return '🛡ارسال لینک در قلمرو ما ممنوع است🛡'
   end
 end
 
@@ -1513,7 +1513,7 @@ local function run(msg, matches)
 				return
 			end
 			if is_super_group(msg) then
-				return reply_msg(msg.id, '🏹 سربازانم آماده پشتیبانی از این قلمرو هستند 🏹', ok_cb, false)
+				return reply_msg(msg.id, '⚔ آماده پشتیبانی از مردم این قلمرو هستم ⚔', ok_cb, false)
 			end
 			print("SuperGroup "..msg.to.print_name.."("..msg.to.id..") added")
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] added SuperGroup")
@@ -2427,10 +2427,10 @@ local function run(msg, matches)
 		end
 		
 		if matches[1] == 'ping' and not is_owner(msg) then
-			text = " 👑 سربازانم در این قلمرو نگهبانی میدهند 👑 "
+			text = " 🔥 در این قلمرو نظاره گریم  🔥 "
 			reply_msg(msg.id, text, ok_cb, false)
 			elseif matches[1] == 'ping' and is_owner(msg) then
-			text = "⭐️ درود بر گلادیاتور عرفان هرکولس ⭐️"
+			text = "👑 در این قلمرو نظاره گریم سردار عرفان 👑"
 			reply_msg(msg.id, text, ok_cb, false)
 			return ""
 		end
