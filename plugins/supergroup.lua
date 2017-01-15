@@ -41,7 +41,7 @@
       end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
-	  local text = '😐 مواظب گروهم بابایی 😎 😐'
+	  local text = '💀 im GOG of WAR and ready  gladiator @Erfan_herkuless_051 💀'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -259,11 +259,11 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return '✅ رسال لینک در قلمرو پادشاه ممنوع است 🏹'
+    return '✅ ارسال لینک در قلمرو پادشاه ممنوع است 🏹'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ رسال لینک در قلمرو پادشاه ممنوع است 🏹'
+    return '✅ ارسال لینک در قلمرو پادشاه ممنوع است 🏹'
   end
 end
 
@@ -2418,7 +2418,7 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'help' and not is_owner(msg) then
-			text = "اگر سوالی داری از سازنده ام امپراطور @Erfan_herkuless_051  بپرس نادان ⚔"
+			text = "اگر سوالی داری از سازنده ام امپراطور @Erfan_herkuless_051  بپرس  ⚔"
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'help' and is_owner(msg) then
 			local name_log = user_print_name(msg.from)
@@ -2432,7 +2432,7 @@ local function run(msg, matches)
 			elseif matches[1] == 'ping' and is_owner(msg) then
 			text = "⭐️ درود بر گلادیاتور عرفان هرکولس ⭐️"
 			reply_msg(msg.id, text, ok_cb, false)
-			return "🛡 درود بر  نسل آریایی 🛡"
+			return ""
 		end
 		
 		if matches[1] == 'peer_id' and is_admin1(msg)then
