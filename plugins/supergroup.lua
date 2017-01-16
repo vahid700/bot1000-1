@@ -259,11 +259,11 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return '🛡ارسال لینک در قلمرو ما ممنوع است🛡'
+    return '🏹 ارسال لینک در قلمرو پادشاه ممنوع است 🏹'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '🛡ارسال لینک در قلمرو ما ممنوع است🛡'
+    return '🏹 ارسال لینک در قلمرو پادشاه ممنوع است 🏹'
   end
 end
 
@@ -973,7 +973,7 @@ local function demote_admin(receiver, member_username, user_id)
     return
   end
   if not data[group]['moderators'][tostring(user_id)] then
-    return send_large_msg(receiver, member_tag_username..' در حال حاضر ناظر نیست 👽')
+    return send_large_msg(receiver, member_tag_username..' از مقام گلادیاتوری خلع شد⛔️')
   end
   data[group]['moderators'][tostring(user_id)] = nil
   save_data(_config.moderation.data, data)
@@ -987,11 +987,11 @@ local function promote2(receiver, member_username, user_id)
     return send_large_msg(receiver, '❌سوپر گروه ادد نشده')
   end
   if data[group]['moderators'][tostring(user_id)] then
-    return send_large_msg(receiver, member_username..' در حال حاضر ناظر است 👽.')
+    return send_large_msg(receiver, member_username..' در حال حاضر گلادیاتور است 🏆')
   end
   data[group]['moderators'][tostring(user_id)] = member_tag_username
   save_data(_config.moderation.data, data)
-  send_large_msg(receiver, member_username..' ✅ ترفیع گرفت')
+  send_large_msg(receiver, member_username..'  به درجه گلادیاتوری رسید🎖 ')
 end
 
 local function demote2(receiver, member_username, user_id)
@@ -2427,10 +2427,10 @@ local function run(msg, matches)
 		end
 		
 		if matches[1] == 'ping' and not is_owner(msg) then
-			text = " 🔥 در این قلمرو نظاره گریم  🔥 "
+			text = " 👑 سربازانم در این قلمرو نگهبانی میدهند 👑 "
 			reply_msg(msg.id, text, ok_cb, false)
 			elseif matches[1] == 'ping' and is_owner(msg) then
-			text = "👑 در این قلمرو نظاره گریم سردار 👑"
+			text = " ⭐️درود بر گلادیاتور ⭐️"
 			reply_msg(msg.id, text, ok_cb, false)
 			return ""
 		end
