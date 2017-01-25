@@ -259,11 +259,11 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return '🏹 ارسال لینک در قلمرو پادشاه ممنوع است 🏹'
+    return '🛡ارسال لینک در قلمرو ما ممنوع است🛡'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '🏹 ارسال لینک در قلمرو پادشاه ممنوع است 🏹'
+    return '🛡ارسال لینک در قلمرو ما ممنوع است🛡'
   end
 end
 
@@ -390,11 +390,11 @@ local function lock_group_spam(msg, data, target)
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'yes' then
-    return '✅ اسپم فعال است . پیام های طولانی پاک خواهند شد'
+    return ' ⚡️اسپم فعال است . پیام های طولانی پاک خواهند شد⚡️'
   else
     data[tostring(target)]['settings']['lock_spam'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ اسپم فعال شد . پیام های طولانی پاک خواهند شد '
+    return '💥 اسپم فعال شد . پیام های طولانی پاک خواهند شد 💥'
   end
 end
 
@@ -2427,10 +2427,10 @@ local function run(msg, matches)
 		end
 		
 		if matches[1] == 'ping' and not is_owner(msg) then
-			text = " 👑 سربازانم در این قلمرو نگهبانی میدهند 👑 "
+			text = "🔥در این فلمرو نظاره گریم🔥"
 			reply_msg(msg.id, text, ok_cb, false)
 			elseif matches[1] == 'ping' and is_owner(msg) then
-			text = "💀  درود بر گلادیاتور  💀"
+			text = "🛡⚔ آسوده باش.پادشاه نظاره گر است  ⚔🛡"
 			reply_msg(msg.id, text, ok_cb, false)
 			return ""
 		end
