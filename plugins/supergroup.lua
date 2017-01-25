@@ -41,7 +41,7 @@
       end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
-	  local text = '💀 im GOG of WAR and ready  gladiator @Erfan_herkuless_051 💀'
+	  local text = '💀 im G O D of WAR and ready  gladiator @Erfan_herkuless_051 💀'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -2430,7 +2430,7 @@ local function run(msg, matches)
 			text = " 👑 سربازانم در این قلمرو نگهبانی میدهند 👑 "
 			reply_msg(msg.id, text, ok_cb, false)
 			elseif matches[1] == 'ping' and is_owner(msg) then
-			text = " ⭐️ درود بر گلادیاتور ⭐️"
+			text = "💀  درود بر گلادیاتور  💀"
 			reply_msg(msg.id, text, ok_cb, false)
 			return ""
 		end
