@@ -22,7 +22,7 @@ local permagbot = [[
 🔻#who :ليست همه کابران گروه به همراه ايدي
 〰〰〰〰〰
 🔻#id : با زدن یوزر نیم شخص ایدی شخص را دریافت کنید
-mesal : #id @permag_bots
+mesal : #id @Erfan_herkuless_051
 〰〰〰〰〰
 🔻#promote : کاربر مورد نظر ناظر ربات میشود
 ▫️mesal : /promote @iduser
