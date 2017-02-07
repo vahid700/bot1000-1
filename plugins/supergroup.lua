@@ -2427,10 +2427,10 @@ local function run(msg, matches)
 		end
 		
 		if matches[1] == 'ping' and not is_owner(msg) then
-			text = "👑 سربازانم در این قلمرو نگهبانی میدهند 👑"
+			text = "💀 درود بر خدایان جنگ 💀"
 			reply_msg(msg.id, text, ok_cb, false)
 			elseif matches[1] == 'ping' and is_owner(msg) then
-			text = "💀  درود بر گلادیاتور  💀"
+			text = "🛡 آسوده باش پادشاه نظاره گر است 🛡"
 			reply_msg(msg.id, text, ok_cb, false)
 			return ""
 		end
