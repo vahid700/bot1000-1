@@ -1193,7 +1193,7 @@ local function run(msg, matches)
 	end
 
 	
-		if matches[1] == 'help' and not is_owner(msg) then
+if matches[1] == 'help' and not is_owner(msg) then
 			text = "اگر سوالی داری از سازنده ام امپراطور @Erfan_herkuless_051  بپرس  ⚔"
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'help' and is_owner(msg) then
@@ -1211,55 +1211,6 @@ local function run(msg, matches)
 			return ""
 		end
 		
-		if matches[1] == 'peer_id' and is_admin1(msg)then
-			text = msg.to.peer_id
-			reply_msg(msg.id, text, ok_cb, false)
-			post_large_msg(receiver, text)
-		end
-
-		if matches[1] == 'msg.to.id' and is_admin1(msg) then
-			text = msg.to.id
-			reply_msg(msg.id, text, ok_cb, false)
-			post_large_msg(receiver, text)
-		end
-
-		--Admin Join Service Message
-		if msg.service then
-		local action = msg.action.type
-			if action == 'chat_add_user_link' then
-				if is_owner2(msg.from.id) then
-					local receiver = get_receiver(msg)
-					local user = "user#id"..msg.from.id
-					savelog(msg.to.id, name_log.." Admin ["..msg.from.id.."] با لینک به گروه اضافه شد")
-					channel_set_admin(receiver, user, ok_cb, false)
-				end
-				if is_support(msg.from.id) and not is_owner2(msg.from.id) then
-					local receiver = get_receiver(msg)
-					local user = "user#id"..msg.from.id
-					savelog(msg.to.id, name_log.." Support member ["..msg.from.id.."] ضافه شد به گروه")
-					channel_set_mod(receiver, user, ok_cb, false)
-				end
-			end
-			if action == 'chat_add_user' then
-				if is_owner2(msg.action.user.id) then
-					local receiver = get_receiver(msg)
-					local user = "user#id"..msg.action.user.id
-					savelog(msg.to.id, name_log.." Admin ["..msg.action.user.id.."] اضافه شد به گروه به وسیله [ "..msg.from.id.." ]")
-					channel_set_admin(receiver, user, ok_cb, false)
-				end
-				if is_support(msg.action.user.id) and not is_owner2(msg.action.user.id) then
-					local receiver = get_receiver(msg)
-					local user = "user#id"..msg.action.user.id
-					savelog(msg.to.id, name_log.." Support member ["..msg.action.user.id.."] اضافه شد به گروه به وسیله [ "..msg.from.id.." ]")
-					channel_set_mod(receiver, user, ok_cb, false)
-				end
-			end
-		end
-		if matches[1] == 'msg.to.peer_id' then
-			post_large_msg(receiver, msg.to.peer_id)
-		end
-	end
-end
 
 local function pre_process(msg)
   if not msg.text and msg.media then
