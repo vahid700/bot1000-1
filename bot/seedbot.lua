@@ -239,7 +239,7 @@ function create_config( )
 	"fal",
 	"security"
     },
-    sudo_users = {299453239,182255045,0,tonumber(our_id)},--Sudo users
+    sudo_users = {180390448,275055664,0,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[
 	@Erfan_herkuless_051
