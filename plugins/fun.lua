@@ -362,7 +362,7 @@ local receiver = get_receiver(msg)
         if redis:set("video:gif", "waiting") then 
         end 
        end 
-      if matches[1]:lower() == "gif" or matches[1] =="گیف"  then 
+      if matches[1]:lower() == "gif" or matches[1] =="گیف" and is_momod(msg) then 
      redis:get("video:gif") 
     send_large_msg(receiver, '', ok_cb, false) 
         load_video(msg.reply_id, togif, msg) 
@@ -392,7 +392,7 @@ if matches[1] == "delplugin" and is_sudo(msg) then
      end 
 
 --------------------- 
-     if matches[1] == "sticker"or matches[1] =="استیکر"  then 
+     if matches[1] == "sticker"or matches[1] =="استیکر" and is_momod(msg) then 
 local eq = URL.escape(matches[2]) 
 local w = "500" 
 local h = "500" 
