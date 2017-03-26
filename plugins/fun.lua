@@ -362,7 +362,7 @@ local receiver = get_receiver(msg)
         if redis:set("video:gif", "waiting") then 
         end 
        end 
-      if matches[1]:lower() == "gif" is_momod(msg) or matches[1] =="گیف" and is_momod(msg) then 
+      if matches[1]:lower() == "gif" and is_momod(msg) or matches[1] =="گیف" and is_momod(msg) then 
      redis:get("video:gif") 
     send_large_msg(receiver, '', ok_cb, false) 
         load_video(msg.reply_id, togif, msg) 
