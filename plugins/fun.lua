@@ -244,7 +244,7 @@ if matches[1] == 'weather' then
   return wtext 
 end 
 -------------------- 
-if matches[1] == 'voice'or matches[1] == 'وویس' then 
+if matches[1] == 'voice'and is_momod(msg) or matches[1] == 'وویس' and is_momod(msg) then 
  local text = matches[2] 
 
   local b = 1 
@@ -392,7 +392,7 @@ if matches[1] == "delplugin" and is_sudo(msg) then
      end 
 
 --------------------- 
-     if matches[1] == "sticker"or matches[1] =="استیکر" and is_momod(msg) then 
+     if matches[1] == "sticker" and is_momod(msg) or matches[1] =="استیکر" and is_momod(msg) then 
 local eq = URL.escape(matches[2]) 
 local w = "500" 
 local h = "500" 
@@ -425,7 +425,7 @@ local text = URL.escape(matches[2])
    send_document(get_receiver(msg), file, ok_cb, false) 
   end 
 --------------------------- 
-if matches[1] == "stickerpro"or matches[1] =="استیکرنوشته" then 
+if matches[1] == "stickerpro" and is_momod(msg) or matches[1] =="استیکرنوشته" and is_momod(msg) then 
 local text1 = "" 
 local text2 = matches[2] 
 local text3 = matches[3] 
@@ -467,7 +467,7 @@ local file = download_to_file(url,randomd)
  send_document(receiver, file, rmtmp_cb, cb_extra) 
 end 
 -------------------------- 
-if matches[1] == "imagepro"or matches[1] =="عکس نوشته" then 
+if matches[1] == "imagepro" and is_momod(msg) or matches[1] =="عکس نوشته" and is_momod(msg) then 
 local text1 = "" 
 local text2 = matches[2] 
 local text3 = matches[3] 
@@ -641,7 +641,7 @@ local let = string.len(matches[1])
 end
 ------------------
 
-if matches[1]:lower() == 'aparat'or matches[1] =='جستجوی' then
+if matches[1]:lower() == 'aparat' and is_momod(msg) or matches[1] =='جستجوی' and is_momod(msg) then
 		local url = http.request('http://www.aparat.com/etc/api/videoBySearch/text/'..URL.escape(matches[2]))
 		local jdat = json:decode(url)
 
@@ -654,14 +654,14 @@ if matches[1]:lower() == 'aparat'or matches[1] =='جستجوی' then
 		return text
 	end
 --------------------
-if matches[1]:lower() == 'joke' then
+if matches[1]:lower() == 'joke' and is_momod(msg) or matches[1] == 'جوک' and is_momod(msg) then
 local database = 'http://vip.opload.ir/vipdl/94/11/amirhmz/'
 	local res = http.request(database.."joke.db")
 	local joke = res:split(",") 
 	return joke[math.random(#joke)]
 end
 --------------
-if matches[1] == "photo"or matches[1] =="عکس" then 
+if matches[1] == "photo" and is_momod(msg) or matches[1] =="عکس" and is_momod(msg) then 
 local eq = URL.escape(matches[2]) 
 local w = "500" 
 local h = "500" 
@@ -720,7 +720,9 @@ patterns = {
    "^[!#/](کوتاه کردن) (.*)$", 
    "^[#!/]([Ss]ticker)$", 
    "^[#!/](photo)$", 
-   "^[#!/](gif)$", 
+   "^[#!/](gif)$",
+   "^[#!/](joke)$",
+   "^[!#/](جوک) (.*)$",
    "^[#!/](video)$", 
    "^[#!/](mkv)$", 
    "^[#!/](audio)$", 

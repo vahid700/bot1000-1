@@ -1255,15 +1255,6 @@ local function run(msg, matches)
 			return super_help()
 		end
 		
-		if matches[1] == 'ping' and not is_owner(msg) then
-			text = "👑 سربازانم در این قلمرو نگهبانی میدهند 👑"
-			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'ping' and is_owner(msg) then
-			text = "💀  درود بر گلادیاتور  💀"
-			reply_msg(msg.id, text, ok_cb, false)
-			return ""
-		end
-		
 		if matches[1] == 'peer_id' and is_admin1(msg)then
 			text = msg.to.peer_id
 			reply_msg(msg.id, text, ok_cb, false)

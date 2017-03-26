@@ -1,5 +1,5 @@
 local function run(msg, matches)
-	if matches[1]:lower() == 'varzesh' then
+	if matches[1]:lower() == 'varzesh' and is_momod(msg) or matches[1] =='����' and is_momod(msg) then
     local url = 'http://www.top90.ir/iran/persian-gulf-league'
   local res,code = http.request(url)
 local text = '🔆فوتبال لیگ برتر ایران🔆\n\n'
@@ -106,6 +106,7 @@ end
 return {
    patterns = {
 "^[/#!](varzesh)$",
+"^[/#!](����)$",
 "^[/#!](tinfo) (%d+)$",
    },
    run = run
