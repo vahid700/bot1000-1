@@ -782,7 +782,7 @@ end
 --End non-channel_invite username actions
 
 --Run function
-    local function run(msg, matches)
+local function run(msg, matches)
 	if msg.to.type == 'chat' then
 		if matches[1] == 'tosuper' then
 			if not is_admin1(msg) then
