@@ -243,20 +243,6 @@ if matches[1] == 'weather' then
   end 
   return wtext 
 end 
---------------------- 
-if matches[1] == 'time' or matches[1] =='زمان' then 
-local url , res = http.request('http://api.gpmod.ir/time/') 
-if res ~= 200 then 
- return "No connection" 
-  end 
-  local colors = {'blue','green','yellow','magenta','Orange','DarkOrange','red'} 
-  local fonts = {'mathbf','mathit','mathfrak','mathrm'} 
-local jdat = json:decode(url) 
-local url = 'http://latex.codecogs.com/png.download?'..'\\dpi{600}%20\\huge%20\\'..fonts[math.random(#fonts)]..'{{\\color{'..colors[math.random(#colors)]..'}'..jdat.ENtime..'}}' 
-local file = download_to_file(url,'time.webp') 
-send_document(get_receiver(msg) , file, ok_cb, false) 
-
-end 
 -------------------- 
 if matches[1] == 'voice'or matches[1] == 'وویس' then 
  local text = matches[2] 
@@ -725,8 +711,6 @@ patterns = {
    "^[!#/]([Dd]elplugin) (.*)$", 
    "^[#!/](calc) (.*)$", 
    "^[!#/](ماشین حساب) (.*)$", 
-   "^[#!/](time)$", 
-   "^[#!/](زمان)$", 
   -- "^[#!/](info)$", 
   -- "^[#!/](me)$", 
    "^[!/#](voice) +(.*)$", 
