@@ -235,6 +235,7 @@ function create_config( )
 	"tr",
 	"varzesh",
 	"weather",
+	"write1",
 	"whitelist",
 	"fal",
 	"security"
