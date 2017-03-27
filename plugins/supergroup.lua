@@ -1258,8 +1258,8 @@ local function run(msg, matches)
 		if matches[1] == 'ping' and not is_owner(msg) then
 			text = "🎭آماده پاکسازی و دستورات فان هستم🎭"
 			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'ping' and is_momod(msg) then
-			text = "💀Im ready to kill them all💀"
+			elseif matches[1] == 'ping' and is_owner(msg) then
+			text = "🎭🎭آماده پاکسازی و دستورات فان هستم🎭🎭"
 			reply_msg(msg.id, text, ok_cb, false)
 			return ""
 		end
