@@ -217,7 +217,6 @@ function create_config( )
 	"supergroup",
     "activeuser",
 	"azan",
-	"CleanDeleted",
 	"emoji",
 	"fun",
 	"get",
@@ -240,7 +239,7 @@ function create_config( )
 	"fal",
 	"security"
     },
-    sudo_users = {180390448,275055664,0,tonumber(our_id)},--Sudo users
+    sudo_users = {341533938,244200491,0,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[
 	@Erfan_herkuless_051
