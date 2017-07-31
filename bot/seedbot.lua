@@ -212,34 +212,21 @@ function create_config( )
   -- A simple config with basic plugins and ourselves as privileged user
   config = {
     enabled_plugins = {
-	"admin",
 	"arz",
 	"supergroup",
     "activeuser",
-	"azan",
 	"emoji",
 	"fun",
-	"get",
-	"inrealm",
-	"invite",
-	"kickme",
-	"mid",
 	"msg_checks",
-	"owners",
-	"plug",
 	"rmsg",
 	"set",
-	"stats",
-	"time2",
 	"tr",
-	"varzesh",
 	"weather",
 	"write1",
-	"whitelist",
 	"fal",
 	"security"
     },
-    sudo_users = {341533938,244200491,0,tonumber(our_id)},--Sudo users
+    sudo_users = {419076489,244200491,0,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[
 	@Erfan_herkuless_051

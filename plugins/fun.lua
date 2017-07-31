@@ -618,27 +618,6 @@ local url = 'http://exchange.nalbandan.com/api.php?action=json'
 
 return text 
 end 
--------------------- 
-if matches[1]:lower() == 'del'or matches[1] =='' then 
-      if not is_sudo(msg) then 
-        return "" 
-      end 
-if matches[2] == 'gbanlist' then 
-local hash = 'gbanned' 
-send_large_msg(get_receiver(msg), "لیست سوپر بن پاک شد.") 
-redis:del(hash) 
-     end 
-     end 
----------------------- 
-if matches[1] == "rev"  then 
-local rev =  string.reverse(matches[1])
-       return "Reverse:\n"..rev
-end
----------------------
-if matches[1] == "let"  then 
-local let = string.len(matches[1])
-       return "Letters:\n"..let
-end
 ------------------
 
 if matches[1]:lower() == 'aparat' and is_momod(msg) or matches[1] =='جستجوی' and is_momod(msg) then
@@ -692,8 +671,7 @@ patterns = {
    "^[/#!](aparat) (.*)$",
    "^[!#/](جستجوی) (.*)$",
     "[/!#]rev (.*)",
-    "[/!#]let (.*)",
-   "[!/#]([Dd]el) (.*)$", 
+    "[/!#]let (.*)", 
    '^[#!/]([Aa]bout) (.*)$', 
    "^[/#!](earz) (%d+)$", 
    "^[!#/](معادل) (%d+)$", 
