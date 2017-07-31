@@ -28,7 +28,7 @@
 		  member = 'no',
 		  public = 'no',
 		  lock_rtl = 'no',
-		  lock_tgservice = 'no',
+		  lock_tgservice = 'yes',
 		  lock_contacts = 'no',
 		  strict = 'no'
         }
@@ -161,6 +161,113 @@ end
     send_document(cb_extra.receiver,"./groups/lists/supergroups/"..cb_extra.receiver..".txt", ok_cb, false)
 	post_msg(cb_extra.receiver, text, ok_cb, false)
 end
+
+--Get and output list of kicked users for supergroup
+local function callback_kicked(cb_extra, success, result)
+	--vardump(result)
+	local text = "Kicked Members for SuperGroup "..cb_extra.receiver.."\n\n"
+	local i = 1
+	for k,v in pairsByKeys(result) do
+		if not v.print_name then
+			name = " "
+		else
+			vname = v.print_name:gsub("‮", "")
+			name = vname:gsub("_", " ")
+		end
+		if v.username then
+			name = name.." @"..v.username
+		end
+		text = text.."\n"..i.." - "..name.." [ "..v.peer_id.." ]\n"
+		i = i + 1
+	end
+	local file = io.open("./groups/lists/supergroups/kicked/"..cb_extra.receiver..".txt", "w")
+	file:write(text)
+	file:flush()
+	file:close()
+	send_document(cb_extra.receiver,"./groups/lists/supergroups/kicked/"..cb_extra.receiver..".txt", ok_cb, false)
+	--send_large_msg(cb_extra.receiver, text)
+end
+
+--Begin supergroup locks
+
+local function lock_group_welcome(msg, data, target)
+      if not is_momod(msg) then
+        return "شما مدیر گروه نیستید"
+      end
+  local welcoms = data[tostring(target)]['settings']['welcome']
+  if welcoms == 'yes' then
+    return 'پیام خوش امد گویی فعال است'
+  else
+    data[tostring(target)]['settings']['welcome'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'پیام خوش امد گویی فعال شد\nبرای تغییر این پیام از دستور زیر استفاده کنید\n/set welcome <welcomemsg>'
+  end
+end
+local function unlock_group_welcome(msg, data, target)
+      if not is_momod(msg) then
+        return "شما مدیر گروه نیستید"
+      end
+  local welcoms = data[tostring(target)]['settings']['welcome']
+  if welcoms == 'no' then
+    return 'پیام خوش امد گویی غیر فعال است'
+  else
+    data[tostring(target)]['settings']['welcome'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'پیام خوش امد گویی غیر فعال شد'
+  end
+end
+
+local function lock_group_cmds(msg, data, target)
+  if not is_momod(msg) then
+    return
+  end
+  local group_cmds_lock = data[tostring(target)]['settings']['cmds']
+  if group_cmds_lock == 'yes' then
+  local hash = 'group:'..msg.to.id
+  local group_lang = redis:hget(hash,'lang')
+  if group_lang then
+  return '🔐زدن دستورات توسط کاربران قفل شد🔒'
+  else
+    return '🔒Username is already locked🔒'
+  end
+  end
+    data[tostring(target)]['settings']['cmds'] = 'yes'
+    save_data(_config.moderation.data, data)
+    local hash = 'group:'..msg.to.id
+  local group_lang = redis:hget(hash,'lang')
+  if group_lang then
+  return '🔐زدن دستورات توسط کاربران قفل شد🔒'
+  else
+    return '🔒Username has been locked🔒'
+  end
+end
+
+local function unlock_group_cmds(msg, data, target)
+  if not is_momod(msg) then
+    return
+  end
+  local group_cmds_lock = data[tostring(target)]['settings']['cmds']
+  if group_cmds_lock == 'no' then
+  local hash = 'group:'..msg.to.id
+  local group_lang = redis:hget(hash,'lang')
+  if group_lang then
+  return '🔐کاربران میتوانند دستور برای ربات ارسال کنند . فقط دستورات فان🔒'
+  else
+    return '🔓کاربران میتوانند دستور برای ربات ارسال کنند . فقط دستورات فان🔓'
+  end
+  end
+    data[tostring(target)]['settings']['cmds'] = 'no'
+    save_data(_config.moderation.data, data)
+    local hash = 'group:'..msg.to.id
+  local group_lang = redis:hget(hash,'lang')
+  if group_lang then
+  return '🔐کاربران میتوانند دستور برای ربات ارسال کنند . فقط دستورات فان🔒'
+  else
+    return '🔓کاربران میتوانند دستور برای ربات ارسال کنند . فقط دستورات فان🔓'
+  end
+end
+
+--End supergroup locks
 
 --Show supergroup settings; function
 
@@ -1059,6 +1166,86 @@ local function run(msg, matches)
 		end
 
 
+		if matches[1] == 'clean' then
+			if not is_momod(msg) then
+				return
+			end
+			if not is_momod(msg) then
+				return "Only owner can clean"
+			end
+			if matches[2] == 'modlist' then
+				if next(data[tostring(msg.to.id)]['moderators']) == nil then
+					return 'No moderator(s) in this SuperGroup.'
+				end
+				for k,v in pairs(data[tostring(msg.to.id)]['moderators']) do
+					data[tostring(msg.to.id)]['moderators'][tostring(k)] = nil
+					save_data(_config.moderation.data, data)
+				end
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] ✅ لیست مدیران پاک شد")
+				return 'Modlist has been cleaned'
+			end
+			
+			if matches[2] == "bots" and is_momod(msg) then
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] تمام ربات های گروه حذف شدند")
+				channel_get_bots(receiver, callback_clean_bots, {msg = msg})
+			end
+		end
+
+	
+        if matches[1] == "muteuser" and is_momod(msg) then
+			local chat_id = msg.to.id
+			local hash = "mute_user"..chat_id
+			local user_id = ""
+			if type(msg.reply_id) ~= "nil" then
+				local receiver = get_receiver(msg)
+				local get_cmd = "mute_user"
+				muteuser = get_message(msg.reply_id, get_message_callback, {receiver = receiver, get_cmd = get_cmd, msg = msg})
+			elseif matches[1] == "muteuser" and matches[2] and string.match(matches[2], '^%d+$') then
+				local user_id = matches[2]
+				if is_muted_user(chat_id, user_id) then
+					unmute_user(chat_id, user_id)
+					savelog(msg.to.id, name_log.." ["..msg.from.id.."] حذف ["..user_id.."] از لیست کاربران ساکت شده")
+					return "["..user_id.."] از لیست ساکت شده ها حذف شد"
+				elseif is_owner(msg) then
+					mute_user(chat_id, user_id)
+					savelog(msg.to.id, name_log.." ["..msg.from.id.."] اضافه شد ["..user_id.."] به لیست کابران ساکت شده")
+					return "["..user_id.."] اضافه شد به لیست ساکت شده ها"
+				end
+			elseif matches[1] == "muteuser" and matches[2] and not string.match(matches[2], '^%d+$') then
+				local receiver = get_receiver(msg)
+				local get_cmd = "mute_user"
+				local username = matches[2]
+				local username = string.gsub(matches[2], '@', '')
+				resolve_username(username, callbackres, {receiver = receiver, get_cmd = get_cmd, msg=msg})
+			end
+		end
+
+		if matches[1] == "muteslist" and is_momod(msg) then
+			local chat_id = msg.to.id
+			if not has_mutes(chat_id) then
+				set_mutes(chat_id)
+				return mutes_list(chat_id)
+			end
+			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup muteslist")
+			return mutes_list(chat_id)
+		end
+		if matches[1] == "mutelist" and is_momod(msg) then
+			local chat_id = msg.to.id
+			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup mutelist")
+			return muted_user_list(chat_id)
+		end
+
+		if matches[1] == 'settings' and is_momod(msg) then
+			local target = msg.to.id
+			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup settings ")
+			return show_supergroup_settingsmod(msg, target)
+		end
+
+		if matches[1] == 'rules' then
+			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group rules")
+			return get_rules(msg, data)
+		end
+
 		if matches[1] == 'help' and not is_owner(msg) then
 			text = "اگر سوالی داری از سازنده ام امپراطور @Erfan_herkuless_051  بپرس  ⚔"
 			reply_msg(msg.id, text, ok_cb, false)
@@ -1066,6 +1253,15 @@ local function run(msg, matches)
 			local name_log = user_print_name(msg.from)
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /superhelp")
 			return super_help()
+		end
+		
+		if matches[1] == 'ping' and not is_owner(msg) then
+			text = "🎭آماده پاکسازی و دستورات فان هستم🎭"
+			reply_msg(msg.id, text, ok_cb, false)
+			elseif matches[1] == 'ping' and is_owner(msg) then
+			text = "🎭🎭آماده پاکسازی و دستورات فان هستم🎭🎭"
+			reply_msg(msg.id, text, ok_cb, false)
+			return ""
 		end
 		
 		if matches[1] == 'peer_id' and is_admin1(msg)then
@@ -1159,8 +1355,13 @@ return {
 	"^[#!/]([Ss]ettings)$",
 	"^[#!/]([Cc]lean) (.*)$",
 	"^[#!/]([Hh]elp)$",
+	"^([Pp]ing)$",
+	"^([Pp]ing)$",
+    "[#!/](mp) (.*)",
+	"[#!/](md) (.*)",
     "^([https?://w]*.?telegram.me/joinchat/%S+)$",
 	"msg.to.peer_id",
+	"^!!tgservice (.+)$",
   },
   run = run,
   pre_process = pre_process
